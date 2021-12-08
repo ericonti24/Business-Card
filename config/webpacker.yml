@@ -18,6 +18,8 @@ default: &default
   # Extract and emit a css file
   extract_css: false
 
+  resolved_paths: ["app/assets"] #added
+
   static_assets_extensions:
     - .jpg
     - .jpeg
@@ -67,10 +69,9 @@ development:
     quiet: false
     pretty: false
     headers:
-      'Access-Control-Allow-Origin': '*'
+      "Access-Control-Allow-Origin": "*"
     watch_options:
-      ignored: '**/node_modules/**'
-
+      ignored: "**/node_modules/**"
 
 test:
   <<: *default
