@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'
 
+  get '/auth/:provider/callback', to: 'sessions#omniauth'
+  # get '/auth/google' => 'sessions#create'
+
+
   resources :business_cards
   resources :users
   
