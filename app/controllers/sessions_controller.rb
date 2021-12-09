@@ -1,40 +1,39 @@
 class SessionsController < ActionController::Base
-  def welcome
-  end
 
-  def new
-  end
-
-  def destroy
-    session.clear 
-    redirect_to '/login'
-  end
-
-  def create
-    u = User.find_by_email(params[:email])
-    if u && u.authenticate(params[:password])
-      session[:user_id] = u.id 
-      redirect_to new_business_card_path
-    else
-      flash[:message] = "Invalid credentials. Please try again."
-      redirect_to '/login', alert: "Invalid cedentials. Please try again."
+    def welcome
     end
-  end
 
-  def omniauth 
-    user = User.create_from_omniauth(auth)
-    if user.valid?
-      session[:user_id] = user.id
-      redirect_to new_business_card_path
-    else
-      flash[:message] = user.errors.full_message.join(", ")
-      redirect_to user_path
+    def new
     end
-  end
 
-  private
+    def destroy
+      session.clear 
+      redirect_to '/'
+    end
 
-  def auth
-    request.env['omniauth.auth']
-  end
+    def create
+      if params[:provider] == 'google_oauth2'
+        @user = User.create_by_google_omniauth(auth)
+        session[:user_id] = @user.id
+       redirect_to user_path(@user)
+      else
+        @user = User.find_by(username: params[:user][:username])
+        if @user && @user.authenticate(password: params[:user][:password])
+        end
+      end
+    end
+
+    def omniauth 
+      @user = User.create_by_google_omniauth(auth)
+      if @user.valid?
+        session[:user_id] = @user.id
+        redirect_to '/'
+      end
+    end
+
+    private
+
+    def auth
+      request.env['omniauth.auth']
+    end
 end

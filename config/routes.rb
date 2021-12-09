@@ -7,6 +7,12 @@ Rails.application.routes.draw do
   post '/signup' => 'users#create'
   delete '/logout' => 'sessions#destroy'
 
+  get '/business_card' => 'business_cards#show'
+  get '/new_business_card' => 'business_cards#new'
+  post '/business_cards' => 'business_cards#create'
+
+
+
   get '/auth/:provider/callback', to: 'sessions#omniauth'
   # get '/auth/google' => 'sessions#create'
 
