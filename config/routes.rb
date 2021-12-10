@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/business_card' => 'business_cards#show'
   get '/new_business_card' => 'business_cards#new'
   post '/business_cards' => 'business_cards#create'
+  get '/business_cards' => 'business_cards#index'
 
 
 
@@ -18,7 +19,7 @@ Rails.application.routes.draw do
 
 
   resources :business_cards
-  resources :users
+  resources :users, except: [:new]
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
