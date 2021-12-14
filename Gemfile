@@ -28,6 +28,8 @@ gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
 gem 'omniauth-rails_csrf_protection', '~> 0.1'
 
+gem 'rename'
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

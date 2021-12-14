@@ -1,1 +1,17 @@
-<h1>Create your business card!</h1>
+<h1>Create your new business card!</h1>
+
+<%= form_for(@business_card) do |f|%>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <br></br>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+  <br></br>
+  <%= f.label :web_site %>
+  <%= f.text_field :web_site %>
+  <br></br>
+  <%= f.label :phone_number %>
+  <%= f.text_field :phone_number %>
+  <br></br>
+  <%= f.submit "Submit" %>
+<% end %>
